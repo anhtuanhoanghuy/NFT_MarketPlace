@@ -15,19 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nftapp.nftmarketplace.ItemInfo;
 import com.nftapp.nftmarketplace.R;
-import com.nftapp.nftmarketplace.UserProfile;
 import com.nftapp.nftmarketplace.model.Item;
 
 import java.util.List;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder>{
-    private Context mContext;
+public class ItemAdapter2 extends RecyclerView.Adapter<ItemAdapter2.ItemViewHolder2>{
     private List<Item> mListItem;
-
-    public ItemAdapter(Context mContext) {
-        this.mContext = mContext;
-    }
-
+    private Context mContext;
     public void setData(List<Item> list) {
         this.mListItem = list;
         notifyDataSetChanged();
@@ -35,15 +29,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_nft,parent,false);
-        return new ItemViewHolder(view);
+        return new ItemViewHolder2(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemViewHolder2 holder, int position) {
         Item item = mListItem.get(position);
-        if (item == null) {
+        if(item == null){
             return;
         }
         holder.itemImg.setImageResource(item.getResourceImage());
@@ -55,9 +49,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                 onClickGoToDetail(item);
             }
         });
-
     }
-
     private void onClickGoToDetail(Item item){
         Intent intent = new Intent(mContext, ItemInfo.class);
         Bundle bundle = new Bundle();
@@ -72,21 +64,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public int getItemCount() {
-        if(mListItem != null) {
+        if(mListItem != null){
             return mListItem.size();
         }
         return 0;
     }
 
-
-    public class ItemViewHolder extends RecyclerView.ViewHolder{
+    public class ItemViewHolder2 extends RecyclerView.ViewHolder{
         private CardView layout_item;
         private ImageView itemImg;
         private TextView itemName;
         private TextView itemPrice;
-        public ItemViewHolder(@NonNull View itemView) {
+
+        public ItemViewHolder2(@NonNull View itemView) {
             super(itemView);
-            layout_item = itemView.findViewById(R.id.layout_item);
             itemImg = itemView.findViewById(R.id.item_image);
             itemName = itemView.findViewById(R.id.item_name);
             itemPrice = itemView.findViewById(R.id.item_price);

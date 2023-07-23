@@ -10,30 +10,35 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
 
+import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfile extends AppCompatActivity {
-
+    private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
     private ItemAdapter mItemAdapter;
     private ImageView avt_button;
     private ImageView background_button;
     private Button create_NFT_button;
-    int[] item_image = {R.drawable.avt1,R.drawable.avt2,R.drawable.avt3,R.drawable.avt4,R.drawable.avt5,R.drawable.avt6,R.drawable.avt7,R.drawable.avt8,R.drawable.avt9};
-    String[] item_name = {"avt1","avt2","avt3","avt4","avt5","avt6","avt7","avt8","avt9"};
-    String[] item_price = {"1","2","3","4","5","6","7","8","9"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,26 @@ public class UserProfile extends AppCompatActivity {
         background_button = findViewById(R.id.background_image);
         create_NFT_button = findViewById(R.id.create_nft);
         rcvItem = findViewById(R.id.rcv_items);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_profile);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.action_home) {
+                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (itemId == R.id.action_search) {
+                    startActivity(new Intent(getApplicationContext(), CategoryPage.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (itemId == R.id.action_profile) {
+                    return true;
+                }
+                return false;
+            }
+        });
 
         avt_button.setOnClickListener(view -> showAvtDialog());
         background_button.setOnClickListener(view -> showBackgroundDialog());
@@ -55,20 +80,22 @@ public class UserProfile extends AppCompatActivity {
 
 
         mItemAdapter = new ItemAdapter(this);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rcvItem.setLayoutManager(gridLayoutManager);
-        mItemAdapter.setData(getListItem());
+        if (getListItem().size() != 0) {
+            mItemAdapter.setData(getListItem());
+        } else {
+            ImageView no_result_found_icon;
+            TextView no_result_found_text;
+
+            no_result_found_icon = findViewById(R.id.no_result_found_icon);
+            no_result_found_text = findViewById(R.id.no_result_found_text);
+
+            no_result_found_icon.setVisibility(View.VISIBLE);
+            no_result_found_text.setVisibility(View.VISIBLE);
+        }
         rcvItem.setAdapter(mItemAdapter);
-//        rcvItem.setOnClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(UserProfile.this, ItemInfo.class);
-//                intent.putExtra("item_image",item_image[i]);
-//                intent.putExtra("item_name",item_name[i]);
-//                intent.putExtra("item_price",item_price[i]);
-//                startActivity(intent);
-//            }
-//        });
+
     }
 
     private void showAvtDialog() {
@@ -80,14 +107,17 @@ public class UserProfile extends AppCompatActivity {
         LinearLayout update_avt_layout = dialog.findViewById(R.id.update_avt_layout);
         LinearLayout edit_profile_layout = dialog.findViewById(R.id.edit_profile_layout);
 
-        profile_image_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this,"see avt",Toast.LENGTH_SHORT).show());
-
-        update_avt_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this,"update avt",Toast.LENGTH_SHORT).show());
-
-        edit_profile_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this,"edit profile",Toast.LENGTH_SHORT).show());
-
+        profile_image_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "see avt", Toast.LENGTH_SHORT).show());
+        update_avt_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "update avt", Toast.LENGTH_SHORT).show());
+        edit_profile_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this,EditProfile.class);
+                startActivity(intent);
+            }
+        });
         dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
@@ -100,28 +130,46 @@ public class UserProfile extends AppCompatActivity {
 
         LinearLayout profile_image_layout = dialog.findViewById(R.id.background_image_layout);
         LinearLayout update_avt_layout = dialog.findViewById(R.id.update_background_layout);
-
-        profile_image_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this,"see background",Toast.LENGTH_SHORT).show());
-
-        update_avt_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this,"update background",Toast.LENGTH_SHORT).show());
-
+        profile_image_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "see background", Toast.LENGTH_SHORT).show());
+        update_avt_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "update background", Toast.LENGTH_SHORT).show());
         dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
+
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1,"Avt1","10.000 VND"));
-        list.add(new Item(R.drawable.avt2,"Avt2","20.000 VND"));
-        list.add(new Item(R.drawable.avt3,"Avt3","30.000 VND"));
-        list.add(new Item(R.drawable.avt4,"Avt4","40.000 VND"));
-        list.add(new Item(R.drawable.avt5,"Avt5","50.000 VND"));
-        list.add(new Item(R.drawable.avt6,"Avt6","60.000 VND"));
-        list.add(new Item(R.drawable.avt7,"Avt7","70.000 VND"));
-        list.add(new Item(R.drawable.avt8,"Avt8","80.000 VND"));
-        list.add(new Item(R.drawable.avt9,"Avt9","90.000 VND"));
+        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND"));
+        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND"));
+        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND"));
+        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND"));
+        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND"));
+        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND"));
+        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND"));
+        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND"));
+        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND"));
+        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND"));
+        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND"));
+        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND"));
+        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND"));
+        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND"));
+        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND"));
+        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND"));
+        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND"));
+        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND"));
         return list;
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mItemAdapter != null) {
+            mItemAdapter.release();
+        }
     }
 }
+
+

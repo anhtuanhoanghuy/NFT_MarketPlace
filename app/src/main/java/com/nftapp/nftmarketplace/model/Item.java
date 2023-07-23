@@ -1,9 +1,11 @@
 package com.nftapp.nftmarketplace.model;
 
-public class Item {
-    private int resourceImage;
-    private String item_name;
-    private String item_price;
+import java.io.Serializable;
+
+public class Item implements Serializable {
+    public int resourceImage;
+    public String item_name;
+    public String item_price;
 
     public Item(int resourceImage, String item_name, String item_price) {
         this.resourceImage = resourceImage;

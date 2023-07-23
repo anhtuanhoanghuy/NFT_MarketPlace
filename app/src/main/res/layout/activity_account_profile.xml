@@ -212,4 +212,6 @@
 
         </LinearLayout>
     </ScrollView>
+    <include layout="@layout/bottom_navigation">
+    </include>
 </androidx.constraintlayout.widget.ConstraintLayout>
