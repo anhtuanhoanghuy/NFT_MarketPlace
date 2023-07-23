@@ -6,7 +6,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".UserProfile">
-
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,14 +18,41 @@ tools:context=".UserProfile">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomePage">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp" />
     </RelativeLayout>
 
 </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="70dp"
+        android:background="#f2ecf6"
+        app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/action_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OpenEye"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/action_name"
+                android:src="@drawable/splash_blue"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:elevation="10dp"
+            android:background="@color/gray">
+        </View>
+    </RelativeLayout>
 <include layout="@layout/bottom_navigation"></include>
 </androidx.constraintlayout.widget.ConstraintLayout>

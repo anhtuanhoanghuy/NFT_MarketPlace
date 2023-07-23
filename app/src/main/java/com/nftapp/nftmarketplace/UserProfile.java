@@ -141,24 +141,24 @@ public class UserProfile extends AppCompatActivity {
 
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND"));
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND"));
+        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","MinhTuong"));
         return list;
 
     }

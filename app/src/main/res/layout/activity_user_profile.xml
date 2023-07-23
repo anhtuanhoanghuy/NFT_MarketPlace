@@ -14,8 +14,8 @@
         android:overScrollMode="never"
         android:scrollbars="vertical"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-69dp">
-
+        tools:layout_editor_absoluteY="-69dp"
+        android:layout_marginBottom="100dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -205,8 +205,6 @@
             </RelativeLayout>
 
         </LinearLayout>
-
-
     </ScrollView>
     <include layout="@layout/bottom_navigation"></include>
     <Button

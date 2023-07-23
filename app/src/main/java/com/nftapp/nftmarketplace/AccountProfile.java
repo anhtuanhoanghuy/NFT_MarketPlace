@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
 
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountProfile extends AppCompatActivity {
+    private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
     private ItemAdapter mItemAdapter;
     private Button follow_button;
@@ -24,6 +28,28 @@ public class AccountProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_profile);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_profile);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.action_home) {
+                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (itemId == R.id.action_search) {
+                    startActivity(new Intent(getApplicationContext(), CategoryPage.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (itemId == R.id.action_profile) {
+                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            }
+        });
         rcvItem = findViewById(R.id.rcv_items);
         mItemAdapter = new ItemAdapter(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
@@ -49,15 +75,15 @@ public class AccountProfile extends AppCompatActivity {
 
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1,"Avt1","10.000 VND"));
-        list.add(new Item(R.drawable.avt2,"Avt2","20.000 VND"));
-        list.add(new Item(R.drawable.avt3,"Avt3","30.000 VND"));
-        list.add(new Item(R.drawable.avt4,"Avt4","40.000 VND"));
-        list.add(new Item(R.drawable.avt5,"Avt5","50.000 VND"));
-        list.add(new Item(R.drawable.avt6,"Avt6","60.000 VND"));
-        list.add(new Item(R.drawable.avt7,"Avt7","70.000 VND"));
-        list.add(new Item(R.drawable.avt8,"Avt8","80.000 VND"));
-        list.add(new Item(R.drawable.avt9,"Avt9","90.000 VND"));
+        list.add(new Item(R.drawable.avt1,"Avt1","10.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt2,"Avt2","20.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt3,"Avt3","30.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt4,"Avt4","40.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt5,"Avt5","50.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt6,"Avt6","60.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt7,"Avt7","70.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt8,"Avt8","80.000 VND","AnhTuan"));
+        list.add(new Item(R.drawable.avt9,"Avt9","90.000 VND","MinhTuong"));
         return list;
     }
 }
