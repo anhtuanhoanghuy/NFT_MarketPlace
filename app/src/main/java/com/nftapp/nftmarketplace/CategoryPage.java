@@ -15,12 +15,14 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
+import com.nftapp.nftmarketplace.model.Category;
 import com.nftapp.nftmarketplace.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryPage extends AppCompatActivity {
+    private TextView category_name;
     private ImageView back_button;
     private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
@@ -51,6 +53,8 @@ public class CategoryPage extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_search) {
+                    startActivity(new Intent(getApplicationContext(), SearchNFT.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_profile) {
                     startActivity(new Intent(getApplicationContext(), UserProfile.class));
@@ -64,45 +68,19 @@ public class CategoryPage extends AppCompatActivity {
         mItemAdapter = new ItemAdapter(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rcvItem.setLayoutManager(gridLayoutManager);
-        if (getListItem().size() != 0) {
-            mItemAdapter.setData(getListItem());
-        } else {
-            ImageView no_result_found_icon;
-            TextView no_result_found_text;
-
-            no_result_found_icon = findViewById(R.id.no_result_found_icon);
-            no_result_found_text = findViewById(R.id.no_result_found_text);
-
-            no_result_found_icon.setVisibility(View.VISIBLE);
-            no_result_found_text.setVisibility(View.VISIBLE);
-
+        Bundle bundle = getIntent().getExtras();
+        if(bundle == null) {
+            return;
         }
+        Category category = (Category) bundle.get("object_category");
+        category_name = findViewById(R.id.category_name);
+        Intent intent = getIntent();
+        category_name.setText(category.getNameCategory());
+        mItemAdapter.setData(category.getItems());
         rcvItem.setAdapter(mItemAdapter);
     }
-    
-    private List<Item> getListItem() {
-        List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","MinhTuong"));
-        return list;
 
-    }
+
 }
 
 

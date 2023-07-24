@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfile extends AppCompatActivity {
+    private ImageView logout_button;
     private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
     private ItemAdapter mItemAdapter;
@@ -43,6 +44,14 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        logout_button = findViewById(R.id.logout_button);
+        logout_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this, SplashScreen.class);
+                startActivity(intent);
+            }
+        });
         avt_button = findViewById(R.id.avatar);
         avt_button.setImageResource(avatarResource);
         background_button = findViewById(R.id.background_image);
@@ -60,7 +69,7 @@ public class UserProfile extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_search) {
-                    startActivity(new Intent(getApplicationContext(), CategoryPage.class));
+                    startActivity(new Intent(getApplicationContext(), SearchNFT.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_profile) {

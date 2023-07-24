@@ -65,7 +65,7 @@ public class AccountProfile extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_search) {
-                    startActivity(new Intent(getApplicationContext(), CategoryPage.class));
+                    startActivity(new Intent(getApplicationContext(), SearchNFT.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_profile) {

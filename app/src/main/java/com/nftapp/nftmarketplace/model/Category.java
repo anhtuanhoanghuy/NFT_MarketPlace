@@ -1,8 +1,9 @@
 package com.nftapp.nftmarketplace.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Category {
+public class Category implements Serializable {
     private String nameCategory;
     private List<Item> items;
 
@@ -26,4 +27,5 @@ public class Category {
     public void setItems(List<Item> items) {
         this.items = items;
     }
+
 }

@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.model.Item;
 
 public class ItemInfo extends AppCompatActivity {
+    private Button buy_button;
     private BottomNavigationView bottomNavigationView;
     private ImageView back_button;
     private ImageView item_image;
@@ -24,6 +27,14 @@ public class ItemInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
+        buy_button = findViewById(R.id.buy_button);
+        buy_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ItemInfo.this,"Order successfully",Toast.LENGTH_SHORT).show();
+                buy_button.setText("Ordered");
+            }
+        });
         back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +53,7 @@ public class ItemInfo extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_search) {
-                    startActivity(new Intent(getApplicationContext(), CategoryPage.class));
+                    startActivity(new Intent(getApplicationContext(), SearchNFT.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_profile) {

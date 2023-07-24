@@ -1,18 +1,24 @@
 package com.nftapp.nftmarketplace.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nftapp.nftmarketplace.CategoryPage;
+import com.nftapp.nftmarketplace.ItemInfo;
 import com.nftapp.nftmarketplace.R;
 import com.nftapp.nftmarketplace.model.Category;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>{
@@ -47,8 +53,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         ItemAdapter itemAdapter = new ItemAdapter(mContext);
         itemAdapter.setData(category.getItems());
         holder.rcvItem.setAdapter(itemAdapter);
+        holder.view_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickGotoCategoryPage(category);
+            }
+        });
     }
 
+    public void onClickGotoCategoryPage(Category category) {
+        Intent intent = new Intent(mContext, CategoryPage.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_category", category);
+        intent.putExtras(bundle);
+        mContext.startActivity(intent);
+    }
+    public void release() {
+        mContext = null;
+    }
     @Override
     public int getItemCount() {
         if(mListCategory != null) {
@@ -58,11 +80,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder{
+        private Button view_button;
         private TextView nameCategory;
         private RecyclerView rcvItem;
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             nameCategory = itemView.findViewById(R.id.name_category);
+            view_button = itemView.findViewById(R.id.view_button);
             rcvItem = itemView.findViewById(R.id.rcv_item);
         }
     }
