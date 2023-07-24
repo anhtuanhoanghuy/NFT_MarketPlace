@@ -15,8 +15,14 @@
     <style name="Theme.NFTMarketPlace.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.NFTMarketPlace.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="DialogAnimation">
-        <item name = "android:windowEnterAnimation">@anim/slide_in_bottom</item>
-        <item name = "android:windowExitAnimation">@anim/slide_out_bottom</item>
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <style name="ThemeOverlay.NFTMarketPlace.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 </resources>

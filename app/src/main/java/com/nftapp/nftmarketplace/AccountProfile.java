@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,18 +17,43 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AccountProfile extends AppCompatActivity {
+    private ImageView avt_button;
+    private ImageView background_button;
     private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
     private ItemAdapter mItemAdapter;
     private Button follow_button;
+    private int avatarResource = R.drawable.account_avt;
+    private int backgroundResource = R.drawable.background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_profile);
+        avt_button = findViewById(R.id.avatar);
+        avt_button.setImageResource(avatarResource);
+        background_button = findViewById(R.id.background_image);
+        background_button.setImageResource(backgroundResource);
+        avt_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AccountProfile.this,ImgView.class);
+                intent.putExtra("src",avatarResource);
+                startActivity(intent);
+            }
+        });
+        background_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AccountProfile.this,ImgView.class);
+                intent.putExtra("src",backgroundResource);
+                startActivity(intent);
+            }
+        });
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.action_profile);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

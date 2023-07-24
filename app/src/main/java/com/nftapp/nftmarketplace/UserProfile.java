@@ -1,6 +1,7 @@
 package com.nftapp.nftmarketplace;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,7 +26,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
 
-import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +36,17 @@ public class UserProfile extends AppCompatActivity {
     private ImageView avt_button;
     private ImageView background_button;
     private Button create_NFT_button;
+    private int avatarResource = R.drawable.avt;
+    private int backgroundResource = R.drawable.background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         avt_button = findViewById(R.id.avatar);
+        avt_button.setImageResource(avatarResource);
         background_button = findViewById(R.id.background_image);
+        background_button.setImageResource(backgroundResource);
         create_NFT_button = findViewById(R.id.create_nft);
         rcvItem = findViewById(R.id.rcv_items);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -107,7 +109,14 @@ public class UserProfile extends AppCompatActivity {
         LinearLayout update_avt_layout = dialog.findViewById(R.id.update_avt_layout);
         LinearLayout edit_profile_layout = dialog.findViewById(R.id.edit_profile_layout);
 
-        profile_image_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "see avt", Toast.LENGTH_SHORT).show());
+        profile_image_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this,ImgView.class);
+                intent.putExtra("src",avatarResource);
+                startActivity(intent);
+            }
+        });
         update_avt_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "update avt", Toast.LENGTH_SHORT).show());
         edit_profile_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +139,14 @@ public class UserProfile extends AppCompatActivity {
 
         LinearLayout profile_image_layout = dialog.findViewById(R.id.background_image_layout);
         LinearLayout update_avt_layout = dialog.findViewById(R.id.update_background_layout);
-        profile_image_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "see background", Toast.LENGTH_SHORT).show());
+        profile_image_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this,ImgView.class);
+                intent.putExtra("src",backgroundResource);
+                startActivity(intent);
+            }
+        });
         update_avt_layout.setOnClickListener(view -> Toast.makeText(UserProfile.this, "update background", Toast.LENGTH_SHORT).show());
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
