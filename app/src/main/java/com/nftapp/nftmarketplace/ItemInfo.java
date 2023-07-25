@@ -43,7 +43,7 @@ public class ItemInfo extends AppCompatActivity {
             }
         });
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.action_profile);
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {

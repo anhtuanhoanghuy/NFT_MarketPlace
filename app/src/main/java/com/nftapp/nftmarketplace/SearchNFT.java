@@ -32,7 +32,7 @@ public class SearchNFT extends AppCompatActivity {
         setContentView(R.layout.activity_search_nft);
         rcvItem = findViewById(R.id.rcv_items);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.action_profile);
+        bottomNavigationView.setSelectedItemId(R.id.action_search);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
