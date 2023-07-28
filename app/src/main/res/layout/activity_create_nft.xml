@@ -46,14 +46,46 @@
         android:textStyle="bold"
         android:textSize="20dp">
     </TextView>
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/textedit">
-    </ImageView>
+        android:layout_marginTop="5dp">
+        <ImageView
+            android:id="@+id/upload_nft_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/textedit">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/upload_nft_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/upload_nft_container"
+            app:layout_constraintStart_toStartOf="@+id/upload_nft_container"
+            app:layout_constraintTop_toTopOf="@+id/upload_nft_container"
+            app:layout_constraintBottom_toBottomOf="@+id/upload_nft_container"
+            android:src="@drawable/baseline_photo_library_24"
+            />
+
+        <TextView
+            android:id="@+id/upload_nft_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload NFT"
+            android:textColor="@color/gray"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/upload_nft_container"
+            app:layout_constraintEnd_toEndOf="@+id/upload_nft_container"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/upload_nft_container"
+            app:layout_constraintTop_toTopOf="@+id/upload_nft_container"
+            app:layout_constraintVertical_bias="0.731" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +113,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="40dp"
-        android:text="Bio"
+        android:text="Description"
         android:textStyle="bold"
         android:textSize="20dp">
     </TextView>
@@ -93,7 +125,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/textedit"
-        android:hint="Let prople know about your work, creativity &amp; inspiration about this work"
+        android:hint="Let prople know about your work, creativity &amp; inspiration about this NFT"
         android:paddingStart="10dp">
     </EditText>
     <TextView

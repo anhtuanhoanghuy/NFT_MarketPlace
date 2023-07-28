@@ -29,7 +29,7 @@ public class AccountProfile extends AppCompatActivity {
     private ItemAdapter mItemAdapter;
     private Button follow_button;
     private int avatarResource = R.drawable.account_avt;
-    private int backgroundResource = R.drawable.background;
+    private int backgroundResource = R.drawable.background3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
