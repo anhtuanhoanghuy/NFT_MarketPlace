@@ -158,7 +158,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
+        <Button
+            android:id="@+id/auction_button"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
+            android:background="@drawable/follow_button"
+            android:text="Auction"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <include layout="@layout/bottom_navigation">

@@ -4,19 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.model.Item;
 
 public class ItemInfo extends AppCompatActivity {
     private Button buy_button;
+    private Button auction_button;
     private BottomNavigationView bottomNavigationView;
     private ImageView back_button;
     private ImageView item_image;
@@ -28,13 +29,7 @@ public class ItemInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_info);
         buy_button = findViewById(R.id.buy_button);
-        buy_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ItemInfo.this,"Order successfully",Toast.LENGTH_SHORT).show();
-                buy_button.setText("Ordered");
-            }
-        });
+        auction_button = findViewById(R.id.auction_button);
         back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +74,27 @@ public class ItemInfo extends AppCompatActivity {
         item_name.setText(item.getItem_name());
         item_price.setText(item.getItem_price());
         author.setText(item.getAuthor());
+        if (item.getAuthor().equals((String) UserProfile.user_name.getText())) {
+            buy_button.setVisibility(View.GONE);
+            auction_button.setVisibility(View.VISIBLE);
+            auction_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(ItemInfo.this,"You clicked auction button",Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            auction_button.setVisibility(View.GONE);
+            buy_button.setVisibility(View.VISIBLE);
+            buy_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(ItemInfo.this,"Order successfully",Toast.LENGTH_SHORT).show();
+                    buy_button.setText("Ordered");
+                }
+            });
+
+        }
         author.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

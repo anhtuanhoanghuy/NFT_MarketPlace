@@ -2,10 +2,8 @@ package com.nftapp.nftmarketplace;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -23,17 +21,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfile extends AppCompatActivity {
+    public static TextView user_name;
     private ImageView logout_button;
     private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
@@ -48,6 +45,7 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        user_name = findViewById(R.id.user_name);
         logout_button = findViewById(R.id.logout_button);
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,24 +208,24 @@ public class UserProfile extends AppCompatActivity {
 
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","MinhTuong"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","AnhTuan"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","MinhTuong"));
+        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","HoangHuyAnhTuan"));
         return list;
 
     }
