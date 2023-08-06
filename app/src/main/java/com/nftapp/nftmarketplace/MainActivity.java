@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_profile) {
+//                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
                     startActivity(new Intent(getApplicationContext(), UserProfile.class));
                     overridePendingTransition(0, 0);
                     return true;

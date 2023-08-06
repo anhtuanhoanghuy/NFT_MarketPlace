@@ -16,12 +16,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
+import com.nftapp.nftmarketplace.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchNFT extends AppCompatActivity {
-    private Button search_collection_button;
     private BottomNavigationView bottomNavigationView;
     private RecyclerView rcvItem;
     private ItemAdapter mItemAdapter;
@@ -33,30 +33,37 @@ public class SearchNFT extends AppCompatActivity {
         rcvItem = findViewById(R.id.rcv_items);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.action_search);
+
+        Bundle bundleReceive = getIntent().getExtras();
+        User user = (User) bundleReceive.get("object_user");
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.action_home) {
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object_user", user);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+//                    startActivity(new Intent(getApplicationContext(), HomePage.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_search) {
                     return true;
                 } else if (itemId == R.id.action_profile) {
-                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                    Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object_user", user);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+//                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
                     overridePendingTransition(0, 0);
                     return true;
                 }
                 return false;
-            }
-        });
-        search_collection_button = findViewById(R.id.search_collection_button);
-        search_collection_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SearchNFT.this, SearchCollection.class);
-                startActivity(intent);
             }
         });
 
@@ -80,24 +87,24 @@ public class SearchNFT extends AppCompatActivity {
 
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND", "MinhTuong"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND", "AnhTuan"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND", "MinhTuong"));
+        list.add(new Item(R.drawable.avt2, "Avt1", 10, "TuanAnh", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt3, "Avt2", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt4, "Avt3", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt5, "Avt4", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt6, "Avt5", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt7, "Avt6", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt1, "Avt7", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt2, "Avt8", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt3, "Avt9", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt4, "Avt1", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt5, "Avt2", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt6, "Avt3", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt7, "Avt4", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt8, "Avt5", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt9, "Avt6", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt1, "Avt7", 10, "MinhTuong", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt8, "Avt8", 10, "AnhTuan", "Sell On Market", "x"));
+        list.add(new Item(R.drawable.avt9, "Avt9", 10, "MinhTuong", "Sell On Market", "x"));
         return list;
     }
 }

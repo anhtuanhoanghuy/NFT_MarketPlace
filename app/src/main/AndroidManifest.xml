@@ -20,18 +20,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NFTMarketPlace"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".LoginMeta_Activity"
+            android:exported="false" />
         <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity> <!-- <activity -->
         <!-- android:name=".MainActivity" -->
         <!-- android:exported="true" -->
@@ -41,68 +43,39 @@
         <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-
-
         <activity
             android:name=".HomePage"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
-
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".SearchNFT"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
-
-        <activity
-            android:name=".SearchCollection"
-            android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".CategoryPage"
-            android:exported="true">
-        </activity>
-
-
+            android:exported="true"></activity>
         <activity
             android:name=".ItemInfo"
-            android:exported="true">
-        </activity>
-
-
+            android:exported="true"></activity>
         <activity
             android:name=".UserProfile"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".ImgView"
             android:exported="false" />
-
         <activity
             android:name=".EditProfile"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
-
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".CreateNFT"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
-
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".AccountProfile"
             android:exported="true"
-            android:windowSoftInputMode="adjustNothing">
-        </activity>
+            android:windowSoftInputMode="adjustNothing"></activity>
     </application>
 
 </manifest>

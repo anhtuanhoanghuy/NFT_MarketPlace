@@ -89,19 +89,5 @@
         </View>
     </RelativeLayout>
     <include layout="@layout/bottom_navigation"></include>
-    <Button
-        android:id="@+id/search_collection_button"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/create_nft_button"
-        android:text="Search Collection"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="80dp"
-        android:visibility="visible"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

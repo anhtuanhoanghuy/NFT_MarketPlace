@@ -48,7 +48,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
         holder.itemImg.setImageResource(item.getResourceImage());
         holder.itemName.setText(item.getItem_name());
-        holder.itemPrice.setText(item.getItem_price());
+        holder.itemPrice.setText(String.valueOf(item.getItem_price()));
+        holder.itemUserName.setText(item.getItem_username());
+        holder.itemStatus.setText(item.getItem_status());
+//        holder.itemDateEnd.setText(item.getItem_date_end());
+
         holder.layout_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,12 +88,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         private ImageView itemImg;
         private TextView itemName;
         private TextView itemPrice;
+        private TextView itemUserName;
+
+        private TextView itemStatus;
+        private TextView itemDateEnd;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             layout_item = itemView.findViewById(R.id.layout_item);
             itemImg = itemView.findViewById(R.id.item_image);
             itemName = itemView.findViewById(R.id.item_name);
             itemPrice = itemView.findViewById(R.id.item_price);
+            itemUserName = itemView.findViewById(R.id.item_username);
+            itemStatus = itemView.findViewById(R.id.item_status);
+            itemDateEnd = itemView.findViewById(R.id.item_date_end);
         }
     }
 }

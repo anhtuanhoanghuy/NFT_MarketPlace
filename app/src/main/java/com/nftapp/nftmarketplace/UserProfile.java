@@ -26,6 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
+import com.nftapp.nftmarketplace.model.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +39,12 @@ public class UserProfile extends AppCompatActivity {
     private ItemAdapter mItemAdapter;
     private ImageView avt_button;
     private ImageView background_button;
+
+    private TextView bio;
+
     private Button create_NFT_button;
-    private int avatarResource = R.drawable.avt;
-    private int backgroundResource = R.drawable.background;
+    private int avatarResource ;
+    private int backgroundResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +59,31 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         avt_button = findViewById(R.id.avatar);
-        avt_button.setImageResource(avatarResource);
         background_button = findViewById(R.id.background_image);
-        background_button.setImageResource(backgroundResource);
+        user_name = findViewById(R.id.user_name);
+        bio = findViewById(R.id.bio);
+
+        Bundle bundleReceive = getIntent().getExtras();
+        if(bundleReceive == null) {
+            return;
+        }
+        User user = (User) bundleReceive.get("object_user");
+        if(user != null) {
+            avatarResource = user.getUser_avatar();
+            avt_button.setImageResource(avatarResource);
+            backgroundResource = user.getUser_background();
+            background_button.setImageResource(backgroundResource);
+            user_name.setText(user.getUser_name());
+            bio.setText(user.getBio());
+        }
+
+
+//        avt_button.setImageResource(avatarResource);
+//        background_button.setImageResource(backgroundResource);
+
+
         create_NFT_button = findViewById(R.id.create_nft);
         rcvItem = findViewById(R.id.rcv_items);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -67,11 +93,23 @@ public class UserProfile extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.action_home) {
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object_user", user);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+//                    startActivity(new Intent(getApplicationContext(), HomePage.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_search) {
-                    startActivity(new Intent(getApplicationContext(), SearchNFT.class));
+                    Intent intent = new Intent(getApplicationContext(), SearchNFT.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("object_user", user);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+//                    startActivity(new Intent(getApplicationContext(), SearchNFT.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.action_profile) {
@@ -208,24 +246,24 @@ public class UserProfile extends AppCompatActivity {
 
     private List<Item> getListItem() {
         List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt1, "Avt1", "10.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt2, "Avt2", "20.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt3, "Avt3", "30.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt4, "Avt4", "40.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt5, "Avt5", "50.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt6, "Avt6", "60.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt7, "Avt7", "70.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt8, "Avt8", "80.000 VND","HoangHuyAnhTuan"));
-        list.add(new Item(R.drawable.avt9, "Avt9", "90.000 VND","HoangHuyAnhTuan"));
+        list.add(new Item(R.drawable.avt1, "Avt1", 10 ,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt2, "Avt2", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt3, "Avt3", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt4, "Avt4", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt5, "Avt5", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt6, "Avt6", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt7, "Avt7", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt8, "Avt8", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt9, "Avt9", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt1, "Avt1", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt2, "Avt2", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt3, "Avt3", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt4, "Avt4", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt5, "Avt5", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt6, "Avt6", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt7, "Avt7", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt8, "Avt8", 10,"TuanAnh", "", "x"));
+        list.add(new Item(R.drawable.avt9, "Avt9", 10,"TuanAnh", "", "x"));
         return list;
 
     }

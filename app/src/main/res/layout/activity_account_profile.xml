@@ -48,7 +48,7 @@
                         android:id="@+id/user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MinhTuong"
+                        android:text="x"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,31 +58,31 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.15" />
 
-                    <TextView
-                        android:id="@+id/followers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2.000k"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/follow"
-                        app:layout_constraintEnd_toEndOf="@+id/follow"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="@+id/follow"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/followers"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="2.000k"-->
+<!--                        android:textSize="20dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/follow"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/follow"-->
+<!--                        app:layout_constraintHorizontal_bias="0.5"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/follow"></TextView>-->
 
-                    <TextView
-                        android:id="@+id/total_volume"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3.000K"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/total"
-                        app:layout_constraintEnd_toEndOf="@+id/total"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="@+id/total"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/total_volume"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="3.000K"-->
+<!--                        android:textSize="20dp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/total"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/total"-->
+<!--                        app:layout_constraintHorizontal_bias="0.5"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/total"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintVertical_bias="1.0"></TextView>-->
 
                     <TextView
                         android:id="@+id/bio"
@@ -99,32 +99,32 @@
                         app:layout_constraintTop_toBottomOf="@id/user_name"
                         app:layout_constraintVertical_bias="0.0"></TextView>
 
-                    <TextView
-                        android:id="@+id/follow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Followers"
-                        android:textColor="@color/gray"
-                        android:textSize="16dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.07"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.7"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/follow"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Followers"-->
+<!--                        android:textColor="@color/gray"-->
+<!--                        android:textSize="16dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintHorizontal_bias="0.07"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintVertical_bias="0.7"></TextView>-->
 
-                    <TextView
-                        android:id="@+id/total"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Total Volume"
-                        android:textColor="@color/gray"
-                        android:textSize="16dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/follow"
-                        app:layout_constraintStart_toEndOf="@id/follow"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0"></TextView>
+<!--                    <TextView-->
+<!--                        android:id="@+id/total"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:text="Total Volume"-->
+<!--                        android:textColor="@color/gray"-->
+<!--                        android:textSize="16dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/follow"-->
+<!--                        app:layout_constraintStart_toEndOf="@id/follow"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintVertical_bias="1.0"></TextView>-->
 
                     <TextView
                         android:id="@+id/collection"
@@ -140,17 +140,17 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.95"></TextView>
 
-                    <Button
-                        android:id="@+id/follow_button"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/follow_button"
-                        android:text="Follow"
-                        android:textSize="20dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/total"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.9"
-                        app:layout_constraintStart_toStartOf="parent" />
+<!--                    <Button-->
+<!--                        android:id="@+id/follow_button"-->
+<!--                        android:layout_width="180dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@drawable/follow_button"-->
+<!--                        android:text="Follow"-->
+<!--                        android:textSize="20dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/total"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintHorizontal_bias="0.9"-->
+<!--                        app:layout_constraintStart_toStartOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
