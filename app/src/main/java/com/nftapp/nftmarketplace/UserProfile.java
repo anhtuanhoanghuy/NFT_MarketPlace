@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,9 +29,14 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.nftapp.nftmarketplace.adapter.ItemAdapter;
 import com.nftapp.nftmarketplace.model.Item;
 import com.nftapp.nftmarketplace.model.User;
+import com.nftapp.nftmarketplace.retrofit.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserProfile extends AppCompatActivity {
     public static TextView user_name;
@@ -39,6 +46,7 @@ public class UserProfile extends AppCompatActivity {
     private ItemAdapter mItemAdapter;
     private ImageView avt_button;
     private ImageView background_button;
+    private List<Item> mListItem;
 
     private TextView bio;
 
@@ -130,23 +138,23 @@ public class UserProfile extends AppCompatActivity {
         });
 
 
-        mItemAdapter = new ItemAdapter(this);
+        mItemAdapter = new ItemAdapter( this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rcvItem.setLayoutManager(gridLayoutManager);
-        if (getListItem().size() != 0) {
-            mItemAdapter.setData(getListItem());
-        } else {
-            ImageView no_result_found_icon;
-            TextView no_result_found_text;
-
-            no_result_found_icon = findViewById(R.id.no_result_found_icon);
-            no_result_found_text = findViewById(R.id.no_result_found_text);
-
-            no_result_found_icon.setVisibility(View.VISIBLE);
-            no_result_found_text.setVisibility(View.VISIBLE);
-        }
-        rcvItem.setAdapter(mItemAdapter);
-
+        mListItem = new ArrayList<>();
+//        if (getListItem().size() != 0) {
+//            mItemAdapter.setData(getListItem());
+//        } else {
+//            ImageView no_result_found_icon;
+//            TextView no_result_found_text;
+//
+//            no_result_found_icon = findViewById(R.id.no_result_found_icon);
+//            no_result_found_text = findViewById(R.id.no_result_found_text);
+//
+//            no_result_found_icon.setVisibility(View.VISIBLE);
+//            no_result_found_text.setVisibility(View.VISIBLE);
+//        }
+        callApiGetUsers();
     }
 
     private void showAvtDialog() {
@@ -244,29 +252,29 @@ public class UserProfile extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
-    private List<Item> getListItem() {
-        List<Item> list = new ArrayList<>();
-        list.add(new Item(R.drawable.avt1, "Avt1", 10 ,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt2, "Avt2", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt3, "Avt3", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt4, "Avt4", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt5, "Avt5", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt6, "Avt6", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt7, "Avt7", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt8, "Avt8", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt9, "Avt9", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt1, "Avt1", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt2, "Avt2", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt3, "Avt3", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt4, "Avt4", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt5, "Avt5", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt6, "Avt6", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt7, "Avt7", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt8, "Avt8", 10,"TuanAnh", "", "x"));
-        list.add(new Item(R.drawable.avt9, "Avt9", 10,"TuanAnh", "", "x"));
-        return list;
-
-    }
+//    private List<Item> getListItem() {
+//        List<Item> list = new ArrayList<>();
+//        list.add(new Item(R.drawable.avt1, "Avt1", 10 ,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt2, "Avt2", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt3, "Avt3", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt4, "Avt4", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt5, "Avt5", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt6, "Avt6", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt7, "Avt7", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt8, "Avt8", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt9, "Avt9", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt1, "Avt1", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt2, "Avt2", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt3, "Avt3", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt4, "Avt4", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt5, "Avt5", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt6, "Avt6", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt7, "Avt7", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt8, "Avt8", 10,"TuanAnh", "", "x"));
+//        list.add(new Item(R.drawable.avt9, "Avt9", 10,"TuanAnh", "", "x"));
+//        return list;
+//
+//    }
 
     @Override
     protected void onDestroy() {
@@ -274,6 +282,34 @@ public class UserProfile extends AppCompatActivity {
         if (mItemAdapter != null) {
             mItemAdapter.release();
         }
+    }
+    private void callApiGetUsers() {
+        ApiService.apiService.getListItem(1).enqueue(new Callback<List<Item>>() {
+            @Override
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                mListItem = response.body();
+//                ItemAdapter mItemAdapter = new ItemAdapter((Context) mListItem);
+                if (mListItem.size() != 0) {
+                    mItemAdapter.setData(mListItem);
+                    rcvItem.setAdapter(mItemAdapter);
+                } else {
+                    ImageView no_result_found_icon;
+                    TextView no_result_found_text;
+
+                    no_result_found_icon = findViewById(R.id.no_result_found_icon);
+                    no_result_found_text = findViewById(R.id.no_result_found_text);
+
+                    no_result_found_icon.setVisibility(View.VISIBLE);
+                    no_result_found_text.setVisibility(View.VISIBLE);
+                }
+                Log.d("test",mListItem.toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<Item>> call, Throwable t) {
+                Toast.makeText(UserProfile.this,"failed",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 

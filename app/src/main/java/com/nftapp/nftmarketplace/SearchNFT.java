@@ -67,7 +67,7 @@ public class SearchNFT extends AppCompatActivity {
             }
         });
 
-        mItemAdapter = new ItemAdapter(this);
+        mItemAdapter = new ItemAdapter( this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         rcvItem.setLayoutManager(gridLayoutManager);
         if (getListItem().size() != 0) {
